@@ -30,7 +30,7 @@ var addTemplates = function(base, templates) {
 }
 
 var addTags = function(base, locals) {
-    // stylesheets tag
+    // stylesheet tag
     locals.stylesheet = {
         html: { call:
             function(obj, render_options) {
@@ -43,19 +43,72 @@ var addTags = function(base, locals) {
         }
 
     };
-    // TODO javascript tag...etc...
+    // javascript tag
+    locals.javascript = {
+        html: { call:
+            function(obj, render_options) {
+                // TODO build timestamp based on last modified of css file
+                var timestamp = new Date().getTime();
+                return "<script src='" +
+                    render_options.name + "?" + timestamp +
+                    "'></script>"
+            }
+        }
+
+    };
+    // TODO keep going with the built in tags! ...
 }
 
+var addFilters = function() {
+    // TODO...
+    filters = {
+        format: function(value, options) {
+            switch(options.format) {
+                case "upcase":
+                    return value.toUpperCase();
+                case "downcase":
+                    return value.toLowerCase();
+            }
+            return value;
+        }
+    };
+}
 
-exports.setup = function(base, templates, locals) {
+var addExtensions = function(base, modules) {
+    if (path.existsSync(base)) {
+        var processor = {
+            base: base,
+            context: 'extensions',
+            modules: modules,
+            process: function(file,stat) {
+                if (/.js$/i.test(file)) {
+                    var name = file.split(".",1)[0].replace((path.join(this.base,'/')),'');
+                    var o = require('../' + path.join('extensions',name));
+                    modules[name] = o;
+                }
+            }
+        }
+        processFilesRecursive(base, processor);
+    }
+}
+
+exports.setup = function(base, locals, templates, filters, modules) {
     // add layouts and includes
     addTemplates(base, templates);
 
     // add built in tags
     addTags(base, locals);
 
+    // add filters
+    addFilters(base, locals)
+
+    // add extensions
+    addExtensions(path.join(base,'../extensions'), modules);
+
     // give our scope a webpop flavour
     locals.contents_tree = locals.contents;
     locals.contents = locals.page;
-    locals.contents.body = {html: locals.page.html};
+    if (locals.page && locals.page.html) {
+        locals.contents.body = {html: locals.page.html};
+    }
 }

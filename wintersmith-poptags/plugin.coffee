@@ -21,18 +21,21 @@ module.exports = (wintersmith, callback) ->
       else
         try
           tpl = (locals) ->
-            # set main template (current template)
             templates = { main: contents.toString() }
+            filters = {}
+            modules = {}
             read = (name) -> templates[name]
+            require = (name) -> modules[name]
             template = new poptags.Template {
               read: read
+              require: require
               name: 'main'
             }
 
             # setup pseudo webpop environment
-            # TODO add more webpop'ness as we need it e.g. more built in tags, support for extensions...
-            # TODO rewrite webprox in coffeescript :)
-            webprox.setup(base, templates, locals)
+            # TODO add more webpop'ness as we need it e.g. more built in tags, filters etc...
+            # TODO rewrite webprox in coffeescript?
+            webprox.setup(base, locals, templates, filters, modules)
 
             template.render(locals)
 
