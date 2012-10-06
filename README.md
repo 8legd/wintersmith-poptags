@@ -13,6 +13,6 @@ run wintersmith with `--plugins ./wintersmith-poptags`
 
 create an `extensions` directory in the root of your wintersmith project
 
-TODO provide local versions of webpop libraries and in built objects
+TODO local versions of [webpop](http://www.webpop.com/) libraries and global objects
 
 	
