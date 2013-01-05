@@ -1,18 +1,20 @@
 wintersmith-poptags
 ===================
 
-[poptags](https://github.com/webpop/poptags) template plugin for [wintersmith](https://github.com/jnordberg/wintersmith)
+[PopTags](https://github.com/webpop/poptags) template plugin for [Wintersmith](https://github.com/jnordberg/wintersmith)
 
-install:
+To install just clone a copy in the root of your Wintersmith project 
 
-copy `wintersmith-poptags` to the root of your wintersmith project
+`cd <project>`
 
-run wintersmith with `--plugins ./wintersmith-poptags`
+`git clone https://github.com/8legd/wintersmith-poptags.git`
 
-## extensions
+Then run your Wintersmith commands with `--plugins ./wintersmith-poptags/plugin`
 
-create an `extensions` directory in the root of your wintersmith project
+## Webpop style extensions
 
-TODO local versions of [webpop](http://www.webpop.com/) extensions libraries and global objects
+Create an `extensions` directory in the root of your Wintersmith project
+
+TODO local versions of [WebPop](http://www.webpop.com/) extensions libraries and global objects
 
 	
