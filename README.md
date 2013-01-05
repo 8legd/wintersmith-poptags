@@ -3,7 +3,7 @@ wintersmith-poptags
 
 [PopTags](https://github.com/webpop/poptags) template plugin for [Wintersmith](https://github.com/jnordberg/wintersmith)
 
-To install just clone a copy in the root of your Wintersmith project 
+To install just clone a copy in to the root of your Wintersmith project 
 
 `cd <project>`
 
