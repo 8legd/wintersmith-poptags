@@ -47,7 +47,7 @@ var addTags = function(base, locals) {
     locals.javascript = {
         html: { call:
             function(obj, render_options) {
-                // TODO build timestamp based on last modified of css file
+                // TODO build timestamp based on last modified of js file
                 var timestamp = new Date().getTime();
                 return "<script src='" +
                     render_options.name + "?" + timestamp +
@@ -83,7 +83,7 @@ var addExtensions = function(base, modules) {
             process: function(file,stat) {
                 if (/.js$/i.test(file)) {
                     var name = file.split(".",1)[0].replace((path.join(this.base,'/')),'');
-                    var o = require('../' + path.join('extensions',name));
+                    var o = require('../../' + path.join('extensions',name));
                     modules[name] = o;
                 }
             }

@@ -11,6 +11,10 @@ To install just clone a copy in to the root of your Wintersmith project
 
 Then run your Wintersmith commands with `--plugins ./wintersmith-poptags/plugin`
 
+The plugin will render files in the `templates` directory with a *.tpl extension
+
+Layouts should be placed in a `layouts` sub directory as per WebPop
+
 ## Webpop style extensions
 
 Create an `extensions` directory in the root of your Wintersmith project
